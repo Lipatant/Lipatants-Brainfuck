@@ -1,0 +1,13 @@
+*.a
+*.o
+*.gcda
+*.gcno
+vgcore.*
+*#*
+*~
+bards
+bgm_sources
+build
+saved
+logs.txt
+.vscode
