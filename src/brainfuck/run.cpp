@@ -16,6 +16,43 @@ namespace LIPATANTS_BRAINFUCK_NAMESPACE
         Memory_c memory;
 
         std::cout << "Running '" << program << "'\n";
-        std::cout << "SHEEEEESH\n";
+        for (unsigned int i = 0; program[i] != '\0'; i++)
+        {
+            switch (program[i])
+            {
+            case '>':
+                memory.setTapePointer(memory.getTapePointer() + 1);
+                break;
+            case '<':
+                memory.setTapePointer(memory.getTapePointer() - 1);
+                break;
+            case '+':
+                memory.setTapePointerValue(memory.getTapePointerValue() + 1);
+                break;
+            case '-':
+                memory.setTapePointerValue(memory.getTapePointerValue() - 1);
+                break;
+            case '.':
+                std::cout << memory.getTapePointerValue();
+                break;
+            case '[':
+                if (memory.getTapePointerValue() == 0) {
+                    while (i != '\0' && program[i] != ']')
+                        i++;
+                    if (i == '\0')
+                        i++;
+                }
+                break;
+            case ']':
+                if (memory.getTapePointerValue() != 0) {
+                    while (i != 0 && program[i] != '[')
+                        i--;
+                    if (i == 0)
+                        i--;
+                }
+                break;
+            }
+        }
+        std::cout << "End\n";
     }
 }
