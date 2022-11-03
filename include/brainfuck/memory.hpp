@@ -29,6 +29,24 @@ namespace LIPATANTS_BRAINFUCK_NAMESPACE
             tapeReset();
         }
 
+        void displayTape(void)
+        {
+            Tape::length_t _tapeLenght = getTapeLength();
+
+            if (getTapePointerValue() >= ' ')
+                std::cout << "\n| P:" << getTapePointer() << " | " << (short)getTapePointerValue() << " (" << getTapePointerValue() << ")\n";
+            else
+                std::cout << "\n| P:" << getTapePointer() << " | " << (short)getTapePointerValue() << "\n";
+            for (Tape::length_t i = 0; i < _tapeLenght; i++) {
+                if (_tape[i] > 0) {
+                    if (_tape[i] >= ' ')
+                        std::cout << "| M:" << i << " | " << (short)_tape[i] << " (" << _tape[i] << ")\n";
+                    else
+                        std::cout << "| M:" << i << " | " << (short)_tape[i] << "\n";
+                }
+            }
+        };
+
         /// @return _tapeLenght
         Tape::length_t getTapeLength(void) { return _tapeLenght; };
 

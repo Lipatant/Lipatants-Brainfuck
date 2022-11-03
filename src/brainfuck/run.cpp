@@ -13,6 +13,7 @@ namespace LIPATANTS_BRAINFUCK_NAMESPACE
 {
     void run(char const *program)
     {
+        int depth = 0;
         Memory_c memory;
 
         std::cout << "Running '" << program << "'\n";
@@ -36,23 +37,45 @@ namespace LIPATANTS_BRAINFUCK_NAMESPACE
                 std::cout << memory.getTapePointerValue();
                 break;
             case '[':
-                if (memory.getTapePointerValue() == 0) {
-                    while (i != '\0' && program[i] != ']')
+                depth = 0;
+                if (memory.getTapePointerValue() == 0)
+                {
+                    do
+                    {
+                        if (program[i] == '[')
+                            depth -= 1;
+                        if (program[i] == ']')
+                            depth += 1;
                         i++;
+                    } while (i != '\0' && depth != 0);
                     if (i == '\0')
                         i++;
                 }
                 break;
             case ']':
-                if (memory.getTapePointerValue() != 0) {
-                    while (i != 0 && program[i] != '[')
+                depth = 0;
+                if (memory.getTapePointerValue() != 0)
+                {
+                    do
+                    {
+                        if (program[i] == ']')
+                            depth -= 1;
+                        if (program[i] == '[')
+                            depth += 1;
                         i--;
+                    } while (i != 0 && depth != 0);
                     if (i == 0)
                         i--;
                 }
                 break;
+            case '#':
+                memory.displayTape();
+                break;
+            case '$':
+                goto END_OF_PROGRAM;
+                break;
             }
         }
-        std::cout << "End\n";
+    END_OF_PROGRAM: ;
     }
 }
