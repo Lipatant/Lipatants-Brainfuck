@@ -11,5 +11,6 @@
 
 namespace LIPATANTS_BRAINFUCK_NAMESPACE
 {
+    bool optimize(char *program);
     void run(char const *program);
 }

@@ -5,8 +5,9 @@
 ## Makefile de Lipatant's Brainfuck
 ##
 
-SRC	=	./brainfuck/run.cpp												\
-		./main.cpp
+SRC	=	./brainfuck/optimize.cpp										\
+		./brainfuck/run.cpp												\
+		./main.cpp														\
 
 BUILDDIR = build
 

@@ -44,6 +44,10 @@ int main(int const ac, char const *av[], char const *env[])
     file.close();
     if (program == NULL)
         return 1;
+    if (brainfuck::optimize(program))
+        std::cout << "Optimizations done, be careful!\n";
+    else
+        std::cout << "No optimization done, well done!\n";
     brainfuck::run(program);
     delete[] program;
     return 0;

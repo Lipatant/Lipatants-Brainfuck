@@ -14,11 +14,13 @@ namespace LIPATANTS_BRAINFUCK_NAMESPACE
     void run(char const *program)
     {
         int depth = 0;
+        unsigned long steps = 0;
         Memory_c memory;
 
         std::cout << "Running '" << program << "'\n";
         for (unsigned int i = 0; program[i] != '\0'; i++)
         {
+            steps++;
             switch (program[i])
             {
             case '>':
@@ -74,8 +76,12 @@ namespace LIPATANTS_BRAINFUCK_NAMESPACE
             case '$':
                 goto END_OF_PROGRAM;
                 break;
+            default:
+                steps--;
+                break;
             }
         }
     END_OF_PROGRAM: ;
+    std::cout << "Code exectued in " << steps << " steps.\n";
     }
 }
